@@ -1,0 +1,150 @@
+---
+title: "Application Exercise 6 - Data import and exploration"
+format: html
+editor: visual
+bibliography: references.bib
+execute:
+  echo: true
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: load-libraries
+
+# The following R Packages are used in this document. They are already installed
+# but need to be loaded using the library() function.
+
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(palmerpenguins)
+
+```
+
+# Exercise 1: Data import
+
+Follow along with the live coding on the screen.
+
+## Stored locally as a CSV 
+
+**Waste Characterization Data, Abidjan, Cote d'Ivoire**
+
+The data in this exercise come from a study undertaken in Abidjan, Cote d'Ivore [@waste2worthinnovations2020]. The data is stored in the sub-folder "raw_data" within the "data" folder. We are using a function from the `readr` R Package to import the data.
+
+```{r}
+
+waste_data <- read_csv(file = "data/raw_data/abidjan-waste-characterization.csv")
+
+```
+
+```{r}
+# Data exploration
+
+waste_data
+glimpse(waste_data)
+str(waste_data)
+nrow(waste_data)
+ncol(waste_data)
+
+```
+
+## Stored in a R data package
+
+**Palmer Penguins**
+
+Size measurements for adult foraging penguins near Palmer Station, Antarctica.
+
+```{r}
+penguins
+glimpse(penguins)
+?penguins
+
+```
+
+**Gapminder**
+
+Excerpt of the Gapminder data on life expectancy, GDP per capita, and population by country. Compiled for the purpose of teaching with data until 2007. It is not a definitive source of socioeconomic data and it is not updated.
+
+```{r}
+library(gapminder)
+
+gapminder
+glimpse(gapminder)
+?gapminder
+```
+
+# Data cleaning
+
+**Waste Characterization Data, Abidjan, Cote d'Ivoire**
+
+Q: Which principles for data organisation in spreadsheets have the authors not followed?
+
+- Principle 3: Choose Good Names for Things
+- Principle 4: Write Dates as YYYY-MM-DD
+
+```{r}
+
+waste_data_clean <- waste_data %>% 
+  rename(Mass = `mass (kg)`) 
+
+```
+
+# Exercise 2 : Data visualisation
+
+Work through the next two tasks by yourself.
+
+## Task 1: Visualise penguins data
+
+1. Remove the hashtags to uncomment the lines in the code-chunk below with the label "penguins-vis".
+2. Run the code that is contained in the code-chunk.
+3. Render the file.
+
+```{r}
+
+# ggplot(data = penguins, 
+#         mapping = aes(x = bill_depth_mm, 
+#                       y = bill_length_mm, 
+#                       color = species)) +
+#    geom_point()
+
+```
+
+## Task 2: Visualise waste data
+
+1. Fill in the blanks in the code-chunk below.
+2. Run the code that is contained in the code-chunk.
+3. Render the file. Why does the plot not show up? 
+
+```{r}
+#| eval: false
+
+ggplot(data = ___,
+       mapping = ___(x = Category, 
+                     y = Mass)) +
+  ____col() +
+  coord_flip() 
+
+```
+
+## Task 3: Visualise gapminder data
+
+1. Run the code that is contained in the code-chunk below.
+2. Render the file and view the output.
+3. Describe what the function `facet_wrap()` does.
+
+```{r}
+
+ggplot(data = gapminder,
+       mapping = aes(x = year,
+                     y = lifeExp,
+                     group = country)) +
+  geom_line() +
+  facet_wrap(~continent)
+
+```
+
+# References
+
+
+
