@@ -1,0 +1,200 @@
+---
+title: "Live Coding - Data Science Lifecycle"
+format: html
+editor: visual
+bibliography: references.bib
+execute:
+  echo: true
+  message: false
+  warning: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# Live Coding
+
+In live coding exercises, the lecturer uses their computer to write code live for learners to follow along. Learners should write the code at the same time as the lecturer for practise.
+
+# Data import
+
+Data can be imported from many different sources. In this exercise, we import data from:
+
+1.  a CSV file that is stored locally in our repository,
+2.  an R Package that is loaded via the \`library()\` function.
+
+## CSV file stored locally
+
+**Waste Characterization Data, Abidjan, Cote d'Ivoire**
+
+The data in this exercise come from a study undertaken in Abidjan, Cote d'Ivore [@waste2worthinnovations2020]. The data is stored in the sub-folder "raw_data" within the "data" folder. We are using a function from the `readr` R Package to import the data.
+
+```{r}
+
+# Explain:
+
+# R Packages 
+# Install once, load for every script
+
+library(readr)
+
+# Explain: 
+
+# file path
+## qmd and rmd always look in directory that they are stored
+
+# Explain:
+
+# function
+# argument
+# assignment operator
+# object
+# Environment
+ 
+waste_data <- read_csv(file = "data/raw_data/abidjan-waste-characterization.csv")
+
+```
+
+```{r}
+
+# Explain: dplyr
+
+# An R Package for data manipulation
+# glimpse() function is part of that R Package
+# other functions are part of base R (come with R installation)
+
+library(dplyr)
+
+waste_data
+glimpse(waste_data)
+str(waste_data)
+nrow(waste_data)
+ncol(waste_data)
+
+```
+
+## Stored in a R data package
+
+**Gapminder**
+
+The data is an [excerpt of the Gapminder data](https://www.gapminder.org/data/documentation/) on life expectancy, GDP per capita, and population by country. Compiled for the purpose of teaching with data until 2007. It is not a definitive source of socioeconomic data and it is not updated [@bryan2017].
+
+```{r}
+library(gapminder)
+
+gapminder
+glimpse(gapminder)
+?gapminder
+
+```
+
+# Data tidying
+
+Once you imported the data, the next step in any data science lifecycle is the tidying of data. It's about bringing your data into a consistent structure that let's you focus on the analysis. Depending on how messy the data structure is, this can be tedious task and take up a great part of the data scienbce lifecycle process.
+
+## Waste characterization data
+
+**Look at the output in the console**
+
+1.  Which principles for data organisation in spreadsheets are not followed?
+
+-   Principle 3: Choose Good Names for Things
+-   Principle 4: Write Dates as YYYY-MM-DD
+
+```{r}
+
+# Take a look at the data
+
+waste_data 
+
+# rename dplyr function
+
+# The three rules:
+
+# 1. First argument is always a data frame
+# 2. Subsequent arguments say what to do with that data frame
+# 3. Always return a data frame
+# 4. Don't modify in place
+
+rename(.data = waste_data, Mass = `mass (kg)`)
+
+rename(waste_data, Mass = `mass (kg)`)
+
+waste_data %>% 
+  rename(Mass = `mass (kg)`)
+
+waste_data_clean <- waste_data %>% 
+  rename(Mass = `mass (kg)`)
+
+```
+
+## Gapminder data
+
+```{r}
+
+# Take a look at the data
+
+gapminder 
+
+```
+
+# Data transformation
+
+Once your data is tidy, a common first step is to transform it. This includes:
+
+1.  narrowing in on what interests you (e.g. all people without toilets in one district, or all data from last year)
+2.  creating new variables from existing (like toilet density, as in number of people per toilet)
+3.  calculating summary statistics (like counts or the mean)
+
+## Waste characterization data
+
+```{r}
+
+waste_data_clean %>% 
+  filter(Sample == "23-A1") 
+
+waste_data_clean %>% 
+  filter(Sample == "23-A1") %>% 
+  arrange(desc(Mass)) %>% 
+  filter(Mass != 0)
+
+waste_data_clean %>% 
+  filter(Sample == "23-A1") %>% 
+  arrange(desc(Mass)) %>% 
+  filter(Mass != 0)
+
+waste_data_clean_23_A1 <- waste_data_clean %>% 
+  filter(Sample == "23-A1") %>% 
+  arrange(desc(Mass)) %>% 
+  filter(Mass != 0) %>% 
+  mutate(Percent = Mass/sum(Mass) * 100) %>% 
+  arrange(desc(Percent)) 
+  
+```
+
+## Gapminder data
+
+```{r}
+
+gapminder_summary_continent <- gapminder %>% 
+  filter(year == 2007) %>% 
+  group_by(continent) %>% 
+  summarise(lifeExp = median(lifeExp))
+
+```
+
+# Data visualisation and tables
+
+## Waste characterization data
+
+See @tbl-one-sample
+
+```{r}
+#| label: tbl-one-sample
+#| tbl-cap: "Mass in kilogram and percentages of waste categories in sample 23-A1"
+
+waste_data_clean_23_A1 %>%
+  select(Category, Mass, Percent) %>% 
+  knitr::kable(digits = 1)
+
+
+```
