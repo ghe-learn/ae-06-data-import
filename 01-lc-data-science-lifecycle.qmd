@@ -20,7 +20,7 @@ In live coding exercises, the lecturer uses their computer to write code live fo
 Data can be imported from many different sources. In this exercise, we import data from:
 
 1.  a CSV file that is stored locally in our repository,
-2.  an R Package that is loaded via the \`library()\` function.
+2.  an R Package that is loaded via the `library()` function.
 
 ## CSV file stored locally
 
@@ -49,7 +49,7 @@ library(readr)
 # assignment operator
 # object
 # Environment
- 
+
 waste_data <- read_csv(file = "data/raw_data/abidjan-waste-characterization.csv")
 
 ```
@@ -168,33 +168,67 @@ waste_data_clean_23_A1 <- waste_data_clean %>%
   filter(Mass != 0) %>% 
   mutate(Percent = Mass/sum(Mass) * 100) %>% 
   arrange(desc(Percent)) 
-  
+
 ```
 
 ## Gapminder data
 
 ```{r}
 
-gapminder_summary_continent <- gapminder %>% 
-  filter(year == 2007) %>% 
+gapminder_yr_2007 <- gapminder %>% 
+  filter(year == 2007)
+  
+gapminder_summary_continent <- gapminder_yr_2007 %>% 
   group_by(continent) %>% 
   summarise(lifeExp = median(lifeExp))
 
 ```
 
-# Data visualisation and tables
+# Data visualisation (and tables)
 
 ## Waste characterization data
 
-See @tbl-one-sample
+Half of the waste in sample 23-A1 was found to be in the Food/Organic category (see @tbl-one-sample).
 
 ```{r}
 #| label: tbl-one-sample
 #| tbl-cap: "Mass in kilogram and percentages of waste categories in sample 23-A1"
 
+library(knitr)
+
 waste_data_clean_23_A1 %>%
   select(Category, Mass, Percent) %>% 
-  knitr::kable(digits = 1)
+  kable(digits = 1) 
 
 
 ```
+
+## Gapminder data
+
+```{r}
+#| label: tbl-median-continent
+#| tbl-cap: "Median life expectancy by continent in 2007."
+
+gapminder_summary_continent %>% 
+  kable()
+
+```
+
+```{r}
+#| label: fig-median-continent
+#| tbl-cap: "Median life expectancy by continent in 2007. Each dot represents one individual coutry."
+
+library(ggplot2)
+
+ggplot(data = gapminder_yr_2007, 
+       mapping = aes(x = continent, 
+                     y = lifeExp)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(position = position_jitter(width = 0.1, height = 0),
+              alpha = 1/4, size = 3) +
+  labs(x = NULL,
+       y = "life expectancy") +
+  theme_minimal(base_size = 14) 
+
+```
+

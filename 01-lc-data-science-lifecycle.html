@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.180">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Live Coding - Data Science Lifecycle</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+
+  <script src="01-lc-data-science-lifecycle_files/libs/clipboard/clipboard.min.js"></script>
+  <script src="01-lc-data-science-lifecycle_files/libs/quarto-html/quarto.js"></script>
+  <script src="01-lc-data-science-lifecycle_files/libs/quarto-html/popper.min.js"></script>
+  <script src="01-lc-data-science-lifecycle_files/libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="01-lc-data-science-lifecycle_files/libs/quarto-html/anchor.min.js"></script>
+  <link href="01-lc-data-science-lifecycle_files/libs/quarto-html/tippy.css" rel="stylesheet">
+  <link id="quarto-text-highlighting-styles" href="01-lc-data-science-lifecycle_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="01-lc-data-science-lifecycle_files/libs/bootstrap/bootstrap.min.js"></script>
+  <link href="01-lc-data-science-lifecycle_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="01-lc-data-science-lifecycle_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="fullcontent">
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7">Live Coding - Data Science Lifecycle</h1></div></header>
+<section id="live-coding" class="level1">
+<h1>Live Coding</h1>
+<p>In live coding exercises, the lecturer uses their computer to write code live for learners to follow along. Learners should write the code at the same time as the lecturer for practise.</p>
+</section>
+<section id="data-import" class="level1">
+<h1>Data import</h1>
+<p>Data can be imported from many different sources. In this exercise, we import data from:</p>
+<ol type="1">
+<li>a CSV file that is stored locally in our repository,</li>
+<li>an R Package that is loaded via the <code>library()</code> function.</li>
+</ol>
+<section id="csv-file-stored-locally" class="level2">
+<h2 class="anchored" data-anchor-id="csv-file-stored-locally">CSV file stored locally</h2>
+<p><strong>Waste Characterization Data, Abidjan, Cote d’Ivoire</strong></p>
+<p>The data in this exercise come from a study undertaken in Abidjan, Cote d’Ivore <span class="citation" data-cites="waste2worthinnovations2020">(<a href="#ref-waste2worthinnovations2020" role="doc-biblioref">Waste2Worth Innovations 2020</a>)</span>. The data is stored in the sub-folder “raw_data” within the “data” folder. We are using a function from the <code>readr</code> R Package to import the data.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explain:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># R Packages </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install once, load for every script</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Explain: </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># file path</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="do">## qmd and rmd always look in directory that they are stored</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Explain:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># function</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># argument</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># assignment operator</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># object</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Environment</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>waste_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"data/raw_data/abidjan-waste-characterization.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explain: dplyr</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># An R Package for data manipulation</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># glimpse() function is part of that R Package</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># other functions are part of base R (come with R installation)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>waste_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 2,080 × 4
+   Date   Sample Category     `mass (kg)`
+   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt;
+ 1 23-Feb 23-A1  Food/Organic        36.5
+ 2 23-Feb 23-B1  Food/Organic        65.0
+ 3 23-Feb 23-A2  Food/Organic        62.4
+ 4 23-Feb 23-B2  Food/Organic        72.6
+ 5 23-Feb 23-A3  Food/Organic        88.6
+ 6 23-Feb 23-B3  Food/Organic        69.1
+ 7 23-Feb 23-A4  Food/Organic        66.0
+ 8 23-Feb 23-B4  Food/Organic        89.6
+ 9 23-Feb 23-A5  Food/Organic        53.9
+10 23-Feb 23-B5  Food/Organic        67.5
+# … with 2,070 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(waste_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>Rows: 2,080
+Columns: 4
+$ Date        &lt;chr&gt; "23-Feb", "23-Feb", "23-Feb", "23-Feb", "23-Feb", "23-Feb"…
+$ Sample      &lt;chr&gt; "23-A1", "23-B1", "23-A2", "23-B2", "23-A3", "23-B3", "23-…
+$ Category    &lt;chr&gt; "Food/Organic", "Food/Organic", "Food/Organic", "Food/Orga…
+$ `mass (kg)` &lt;dbl&gt; 36.52, 65.04, 62.42, 72.60, 88.56, 69.14, 65.98, 89.58, 53…</code></pre>
+</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(waste_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>spec_tbl_df [2,080 × 4] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ Date     : chr [1:2080] "23-Feb" "23-Feb" "23-Feb" "23-Feb" ...
+ $ Sample   : chr [1:2080] "23-A1" "23-B1" "23-A2" "23-B2" ...
+ $ Category : chr [1:2080] "Food/Organic" "Food/Organic" "Food/Organic" "Food/Organic" ...
+ $ mass (kg): num [1:2080] 36.5 65 62.4 72.6 88.6 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   Date = col_character(),
+  ..   Sample = col_character(),
+  ..   Category = col_character(),
+  ..   `mass (kg)` = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(waste_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>[1] 2080</code></pre>
+</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(waste_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+</section>
+<section id="stored-in-a-r-data-package" class="level2">
+<h2 class="anchored" data-anchor-id="stored-in-a-r-data-package">Stored in a R data package</h2>
+<p><strong>Gapminder</strong></p>
+<p>The data is an <a href="https://www.gapminder.org/data/documentation/">excerpt of the Gapminder data</a> on life expectancy, GDP per capita, and population by country. Compiled for the purpose of teaching with data until 2007. It is not a definitive source of socioeconomic data and it is not updated <span class="citation" data-cites="bryan2017">(<a href="#ref-bryan2017" role="doc-biblioref">Bryan, Kim, and MacDonald 2017</a>)</span>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 1,704 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# … with 1,694 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code>Rows: 1,704
+Columns: 6
+$ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
+$ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+$ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+$ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+$ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+$ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+</div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>?gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="data-tidying" class="level1">
+<h1>Data tidying</h1>
+<p>Once you imported the data, the next step in any data science lifecycle is the tidying of data. It’s about bringing your data into a consistent structure that let’s you focus on the analysis. Depending on how messy the data structure is, this can be tedious task and take up a great part of the data scienbce lifecycle process.</p>
+<section id="waste-characterization-data" class="level2">
+<h2 class="anchored" data-anchor-id="waste-characterization-data">Waste characterization data</h2>
+<p><strong>Look at the output in the console</strong></p>
+<ol type="1">
+<li>Which principles for data organisation in spreadsheets are not followed?</li>
+</ol>
+<ul>
+<li>Principle 3: Choose Good Names for Things</li>
+<li>Principle 4: Write Dates as YYYY-MM-DD</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look at the data</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>waste_data </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 2,080 × 4
+   Date   Sample Category     `mass (kg)`
+   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt;
+ 1 23-Feb 23-A1  Food/Organic        36.5
+ 2 23-Feb 23-B1  Food/Organic        65.0
+ 3 23-Feb 23-A2  Food/Organic        62.4
+ 4 23-Feb 23-B2  Food/Organic        72.6
+ 5 23-Feb 23-A3  Food/Organic        88.6
+ 6 23-Feb 23-B3  Food/Organic        69.1
+ 7 23-Feb 23-A4  Food/Organic        66.0
+ 8 23-Feb 23-B4  Food/Organic        89.6
+ 9 23-Feb 23-A5  Food/Organic        53.9
+10 23-Feb 23-B5  Food/Organic        67.5
+# … with 2,070 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename dplyr function</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The three rules:</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. First argument is always a data frame</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Subsequent arguments say what to do with that data frame</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Always return a data frame</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Don't modify in place</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(<span class="at">.data =</span> waste_data, <span class="at">Mass =</span> <span class="st">`</span><span class="at">mass (kg)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 2,080 × 4
+   Date   Sample Category      Mass
+   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt;
+ 1 23-Feb 23-A1  Food/Organic  36.5
+ 2 23-Feb 23-B1  Food/Organic  65.0
+ 3 23-Feb 23-A2  Food/Organic  62.4
+ 4 23-Feb 23-B2  Food/Organic  72.6
+ 5 23-Feb 23-A3  Food/Organic  88.6
+ 6 23-Feb 23-B3  Food/Organic  69.1
+ 7 23-Feb 23-A4  Food/Organic  66.0
+ 8 23-Feb 23-B4  Food/Organic  89.6
+ 9 23-Feb 23-A5  Food/Organic  53.9
+10 23-Feb 23-B5  Food/Organic  67.5
+# … with 2,070 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(waste_data, <span class="at">Mass =</span> <span class="st">`</span><span class="at">mass (kg)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 2,080 × 4
+   Date   Sample Category      Mass
+   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt;
+ 1 23-Feb 23-A1  Food/Organic  36.5
+ 2 23-Feb 23-B1  Food/Organic  65.0
+ 3 23-Feb 23-A2  Food/Organic  62.4
+ 4 23-Feb 23-B2  Food/Organic  72.6
+ 5 23-Feb 23-A3  Food/Organic  88.6
+ 6 23-Feb 23-B3  Food/Organic  69.1
+ 7 23-Feb 23-A4  Food/Organic  66.0
+ 8 23-Feb 23-B4  Food/Organic  89.6
+ 9 23-Feb 23-A5  Food/Organic  53.9
+10 23-Feb 23-B5  Food/Organic  67.5
+# … with 2,070 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>waste_data <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Mass =</span> <span class="st">`</span><span class="at">mass (kg)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 2,080 × 4
+   Date   Sample Category      Mass
+   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt;
+ 1 23-Feb 23-A1  Food/Organic  36.5
+ 2 23-Feb 23-B1  Food/Organic  65.0
+ 3 23-Feb 23-A2  Food/Organic  62.4
+ 4 23-Feb 23-B2  Food/Organic  72.6
+ 5 23-Feb 23-A3  Food/Organic  88.6
+ 6 23-Feb 23-B3  Food/Organic  69.1
+ 7 23-Feb 23-A4  Food/Organic  66.0
+ 8 23-Feb 23-B4  Food/Organic  89.6
+ 9 23-Feb 23-A5  Food/Organic  53.9
+10 23-Feb 23-B5  Food/Organic  67.5
+# … with 2,070 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>waste_data_clean <span class="ot">&lt;-</span> waste_data <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Mass =</span> <span class="st">`</span><span class="at">mass (kg)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="gapminder-data" class="level2">
+<h2 class="anchored" data-anchor-id="gapminder-data">Gapminder data</h2>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look at the data</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>gapminder </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 1,704 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# … with 1,694 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="data-transformation" class="level1">
+<h1>Data transformation</h1>
+<p>Once your data is tidy, a common first step is to transform it. This includes:</p>
+<ol type="1">
+<li>narrowing in on what interests you (e.g.&nbsp;all people without toilets in one district, or all data from last year)</li>
+<li>creating new variables from existing (like toilet density, as in number of people per toilet)</li>
+<li>calculating summary statistics (like counts or the mean)</li>
+</ol>
+<section id="waste-characterization-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="waste-characterization-data-1">Waste characterization data</h2>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>waste_data_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Sample <span class="sc">==</span> <span class="st">"23-A1"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 26 × 4
+   Date   Sample Category                   Mass
+   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;                     &lt;dbl&gt;
+ 1 23-Feb 23-A1  Food/Organic              36.5 
+ 2 23-Feb 23-A1  Paper (white)              1.64
+ 3 23-Feb 23-A1  Other recyclable Paper     0   
+ 4 23-Feb 23-A1  Non-recyclable Paper       0.29
+ 5 23-Feb 23-A1  Cardboards                 1.52
+ 6 23-Feb 23-A1  Textile                    1.11
+ 7 23-Feb 23-A1  All Low Value Plastic      8.06
+ 8 23-Feb 23-A1  Medium Value Plastic (#4)  0.11
+ 9 23-Feb 23-A1  PP (#5)                    0   
+10 23-Feb 23-A1  PET (#1)                   0.24
+# … with 16 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>waste_data_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Sample <span class="sc">==</span> <span class="st">"23-A1"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Mass)) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Mass <span class="sc">!=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 16 × 4
+   Date   Sample Category                     Mass
+   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;                       &lt;dbl&gt;
+ 1 23-Feb 23-A1  Food/Organic                36.5 
+ 2 23-Feb 23-A1  Inerts                       9.6 
+ 3 23-Feb 23-A1  Hygiene Items                8.53
+ 4 23-Feb 23-A1  All Low Value Plastic        8.06
+ 5 23-Feb 23-A1  Paper (white)                1.64
+ 6 23-Feb 23-A1  Cardboards                   1.52
+ 7 23-Feb 23-A1  Textile                      1.11
+ 8 23-Feb 23-A1  Rattan &amp; Wood                0.79
+ 9 23-Feb 23-A1  Unclassified Waste           0.69
+10 23-Feb 23-A1  Other Ferrous Metals         0.66
+11 23-Feb 23-A1  Non-recyclable Paper         0.29
+12 23-Feb 23-A1  PET (#1)                     0.24
+13 23-Feb 23-A1  HDPE (#2)                    0.23
+14 23-Feb 23-A1  Medium Value Plastic (#4)    0.11
+15 23-Feb 23-A1  (Household) Hazardous waste  0.08
+16 23-Feb 23-A1  Fines                        0.08</code></pre>
+</div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>waste_data_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Sample <span class="sc">==</span> <span class="st">"23-A1"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Mass)) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Mass <span class="sc">!=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-stdout">
+<pre><code># A tibble: 16 × 4
+   Date   Sample Category                     Mass
+   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;                       &lt;dbl&gt;
+ 1 23-Feb 23-A1  Food/Organic                36.5 
+ 2 23-Feb 23-A1  Inerts                       9.6 
+ 3 23-Feb 23-A1  Hygiene Items                8.53
+ 4 23-Feb 23-A1  All Low Value Plastic        8.06
+ 5 23-Feb 23-A1  Paper (white)                1.64
+ 6 23-Feb 23-A1  Cardboards                   1.52
+ 7 23-Feb 23-A1  Textile                      1.11
+ 8 23-Feb 23-A1  Rattan &amp; Wood                0.79
+ 9 23-Feb 23-A1  Unclassified Waste           0.69
+10 23-Feb 23-A1  Other Ferrous Metals         0.66
+11 23-Feb 23-A1  Non-recyclable Paper         0.29
+12 23-Feb 23-A1  PET (#1)                     0.24
+13 23-Feb 23-A1  HDPE (#2)                    0.23
+14 23-Feb 23-A1  Medium Value Plastic (#4)    0.11
+15 23-Feb 23-A1  (Household) Hazardous waste  0.08
+16 23-Feb 23-A1  Fines                        0.08</code></pre>
+</div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>waste_data_clean_23_A1 <span class="ot">&lt;-</span> waste_data_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Sample <span class="sc">==</span> <span class="st">"23-A1"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Mass)) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Mass <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Percent =</span> Mass<span class="sc">/</span><span class="fu">sum</span>(Mass) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Percent)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="gapminder-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="gapminder-data-1">Gapminder data</h2>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>gapminder_yr_2007 <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>gapminder_summary_continent <span class="ot">&lt;-</span> gapminder_yr_2007 <span class="sc">%&gt;%</span> </span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lifeExp =</span> <span class="fu">median</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="data-visualisation-and-tables" class="level1">
+<h1>Data visualisation (and tables)</h1>
+<section id="waste-characterization-data-2" class="level2">
+<h2 class="anchored" data-anchor-id="waste-characterization-data-2">Waste characterization data</h2>
+<p>Half of the waste in sample 23-A1 was found to be in the Food/Organic category (see <a href="#tbl-one-sample">Table&nbsp;1</a>).</p>
+<div class="cell">
+<div class="sourceCode" id="cb36"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>waste_data_clean_23_A1 <span class="sc">%&gt;%</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Category, Mass, Percent) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-one-sample" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table 1: Mass in kilogram and percentages of waste categories in sample 23-A1</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Category</th>
+<th style="text-align: right;">Mass</th>
+<th style="text-align: right;">Percent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Food/Organic</td>
+<td style="text-align: right;">36.5</td>
+<td style="text-align: right;">52.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Inerts</td>
+<td style="text-align: right;">9.6</td>
+<td style="text-align: right;">13.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hygiene Items</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: right;">12.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">All Low Value Plastic</td>
+<td style="text-align: right;">8.1</td>
+<td style="text-align: right;">11.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Paper (white)</td>
+<td style="text-align: right;">1.6</td>
+<td style="text-align: right;">2.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cardboards</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">2.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Textile</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: right;">1.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rattan &amp; Wood</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">1.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Unclassified Waste</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Other Ferrous Metals</td>
+<td style="text-align: right;">0.7</td>
+<td style="text-align: right;">0.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Non-recyclable Paper</td>
+<td style="text-align: right;">0.3</td>
+<td style="text-align: right;">0.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PET (#1)</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HDPE (#2)</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Medium Value Plastic (#4)</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(Household) Hazardous waste</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fines</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="gapminder-data-2" class="level2">
+<h2 class="anchored" data-anchor-id="gapminder-data-2">Gapminder data</h2>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>gapminder_summary_continent <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-median-continent" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table 2: Median life expectancy by continent in 2007.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">continent</th>
+<th style="text-align: right;">lifeExp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Africa</td>
+<td style="text-align: right;">52.9265</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Americas</td>
+<td style="text-align: right;">72.8990</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Asia</td>
+<td style="text-align: right;">72.3960</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Europe</td>
+<td style="text-align: right;">78.6085</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Oceania</td>
+<td style="text-align: right;">80.7195</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb38"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder_yr_2007, </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">height =</span> <span class="dv">0</span>),</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"life expectancy"</span>) <span class="sc">+</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-median-continent" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="01-lc-data-science-lifecycle_files/figure-html/fig-median-continent-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: <strong>?(caption)</strong></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-bryan2017" class="csl-entry" role="doc-biblioentry">
+Bryan, Jennifer (Jenny), Albert Y. Kim, and Andrew MacDonald. 2017. <em>Jennybc/Gapminder: V0.3.0</em>. Zenodo. <a href="https://doi.org/10.5281/zenodo.1039839">https://doi.org/10.5281/zenodo.1039839</a>.
+</div>
+<div id="ref-waste2worthinnovations2020" class="csl-entry" role="doc-biblioentry">
+Waste2Worth Innovations. 2020. <span>“Abidjan, Cote d’ivoire, Waste Characterization Data, Feb-Mar 2018.”</span> Zenodo. <a href="https://doi.org/10.5281/ZENODO.4012764">https://doi.org/10.5281/ZENODO.4012764</a>.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+</body></html>

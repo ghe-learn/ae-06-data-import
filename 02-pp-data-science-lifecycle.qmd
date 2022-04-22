@@ -1,0 +1,72 @@
+---
+title: "Pair Programming - Data Science Lifecycle"
+format: html
+editor: visual
+bibliography: references.bib
+execute:
+  echo: true
+  message: false
+  warning: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# Pair Programming
+
+In pair programming exercises learners work in pairs to solve exercises together.
+
+# Exercise 2 : Data visualisation
+
+Work through the next two tasks by yourself.
+
+## Task 1: Visualise penguins data
+
+1.  Remove the hashtags to uncomment the lines in the code-chunk below with the label "penguins-vis".
+2.  Run the code that is contained in the code-chunk.
+3.  Render the file.
+
+```{r}
+
+# ggplot(data = penguins, 
+#         mapping = aes(x = bill_depth_mm, 
+#                       y = bill_length_mm, 
+#                       color = species)) +
+#    geom_point()
+
+```
+
+## Task 2: Visualise waste data
+
+1.  Fill in the blanks in the code-chunk below.
+2.  Run the code that is contained in the code-chunk.
+3.  Render the file. Why does the plot not show up?
+
+```{r}
+#| eval: false
+
+ggplot(data = ___,
+       mapping = ___(x = Category, 
+                     y = Mass)) +
+  ____col() +
+  coord_flip() 
+
+```
+
+## Task 3: Visualise gapminder data
+
+1.  Run the code that is contained in the code-chunk below.
+2.  Render the file and view the output.
+3.  Describe what the function `facet_wrap()` does.
+
+```{r}
+
+ggplot(data = gapminder,
+       mapping = aes(x = year,
+                     y = lifeExp,
+                     group = country)) +
+  geom_line() +
+  facet_wrap(~continent)
+
+```
+
+# References
