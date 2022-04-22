@@ -128,7 +128,7 @@ ggplot(data = global_waste_data_kg_year,
 # Task 5: Data communication
 
 1. In the YAML header, replace 'html' with 'gfm' (GitHub Flavoured Markdown)
-2. Render, and close the file that opens.
+2. Render, and close the pop-up window that opens.
 3. Add, Commit, Push
 4. Open your GitHub repository for this exercise, and click on the file with the '.md' ending ('02-pp-data-science-lifecycle-solutions.md')
 
