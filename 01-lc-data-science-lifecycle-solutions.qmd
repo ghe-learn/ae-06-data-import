@@ -3,7 +3,6 @@ title: "Live Coding - Data Science Lifecycle"
 format:
   html:
     toc: true
-    toc-location: left
 editor: visual
 bibliography: references.bib
 execute:
@@ -13,10 +12,6 @@ execute:
 editor_options: 
   chunk_output_type: console
 ---
-
-# Live Coding
-
-In live coding exercises, the lecturer uses their computer to write code live for learners to follow along. Learners should write the code at the same time as the lecturer for practise.
 
 # Data import
 
@@ -125,7 +120,7 @@ rename(waste_data, Mass = `mass (kg)`)
 waste_data %>% 
   rename(Mass = `mass (kg)`)
 
-waste_data_clean <- waste_data %>% 
+waste_data_tidy <- waste_data %>% 
   rename(Mass = `mass (kg)`)
 
 ```
@@ -152,24 +147,24 @@ Once your data is tidy, a common first step is to transform it. This includes:
 
 ```{r}
 
-waste_data_clean %>% 
+waste_data_tidy %>% 
   filter(Sample == "23-A1") 
 
-waste_data_clean %>% 
+waste_data_tidy %>% 
   filter(Sample == "23-A1") %>% 
   arrange(desc(Mass)) %>% 
   filter(Mass != 0)
 
-waste_data_clean %>% 
+waste_data_tidy %>% 
   filter(Sample == "23-A1") %>% 
   arrange(desc(Mass)) %>% 
   filter(Mass != 0)
 
-waste_data_clean_23_A1 <- waste_data_clean %>% 
+waste_data_23_A1 <- waste_data_tidy %>% 
   filter(Sample == "23-A1") %>% 
   arrange(desc(Mass)) %>% 
   filter(Mass != 0) %>% 
-  mutate(Percent = Mass/sum(Mass) * 100) %>% 
+  mutate(Percent = Mass / sum(Mass) * 100) %>% 
   arrange(desc(Percent)) 
 
 ```
@@ -199,7 +194,7 @@ Half of the waste in sample 23-A1 was found to be in the Food/Organic category (
 
 library(knitr)
 
-waste_data_clean_23_A1 %>%
+waste_data_23_A1 %>%
   select(Category, Mass, Percent) %>% 
   kable(digits = 1) 
 
@@ -213,20 +208,20 @@ waste_data_clean_23_A1 %>%
 #| tbl-cap: "Median life expectancy by continent in 2007."
 
 gapminder_summary_continent %>% 
-  kable()
+  kable(digits = 1)
 
 ```
 
 ```{r}
 #| label: fig-median-continent
-#| tbl-cap: "Median life expectancy by continent in 2007. Each dot represents one individual coutry."
+#| fig-cap: "Median life expectancy by continent in 2007. Each dot represents one individual coutry."
 
 library(ggplot2)
 
 ggplot(data = gapminder_yr_2007, 
        mapping = aes(x = continent, 
                      y = lifeExp)) +
-  geom_boxplot(outlier.shape = NA) +
+  geom_boxplot(outlier.shape = NA) + # google this
   geom_jitter(position = position_jitter(width = 0.1, height = 0),
               alpha = 1/4, size = 3) +
   labs(x = NULL,
@@ -235,3 +230,8 @@ ggplot(data = gapminder_yr_2007,
 
 ```
 
+# Data communication
+
+Your rendered html file is a great data communication product. You will learn a bit later in the course how you could make it accessible to others as a website, but you could also just share the HTML file with a collaborator or render the document to the 'pdf' or 'docx' formats. 
+
+# References
