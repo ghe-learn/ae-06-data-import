@@ -26,7 +26,7 @@ library(palmerpenguins)
 
 Follow along with the live coding on the screen.
 
-## Stored locally as a CSV 
+## Stored locally as a CSV
 
 **Waste Characterization Data, Abidjan, Cote d'Ivoire**
 
@@ -80,8 +80,8 @@ glimpse(gapminder)
 
 Q: Which principles for data organisation in spreadsheets have the authors not followed?
 
-- Principle 3: Choose Good Names for Things
-- Principle 4: Write Dates as YYYY-MM-DD
+-   Principle 3: Choose Good Names for Things
+-   Principle 4: Write Dates as YYYY-MM-DD
 
 ```{r}
 
@@ -96,9 +96,9 @@ Work through the next two tasks by yourself.
 
 ## Task 1: Visualise penguins data
 
-1. Remove the hashtags to uncomment the lines in the code-chunk below with the label "penguins-vis".
-2. Run the code that is contained in the code-chunk.
-3. Render the file.
+1.  Remove the hashtags to uncomment the lines in the code-chunk below with the label "penguins-vis".
+2.  Run the code that is contained in the code-chunk.
+3.  Render the file.
 
 ```{r}
 
@@ -112,9 +112,9 @@ Work through the next two tasks by yourself.
 
 ## Task 2: Visualise waste data
 
-1. Fill in the blanks in the code-chunk below.
-2. Run the code that is contained in the code-chunk.
-3. Render the file. Why does the plot not show up? 
+1.  Fill in the blanks in the code-chunk below.
+2.  Run the code that is contained in the code-chunk.
+3.  Render the file. Why does the plot not show up?
 
 ```{r}
 #| eval: false
@@ -129,9 +129,9 @@ ggplot(data = ___,
 
 ## Task 3: Visualise gapminder data
 
-1. Run the code that is contained in the code-chunk below.
-2. Render the file and view the output.
-3. Describe what the function `facet_wrap()` does.
+1.  Run the code that is contained in the code-chunk below.
+2.  Render the file and view the output.
+3.  Describe what the function `facet_wrap()` does.
 
 ```{r}
 
@@ -145,6 +145,3 @@ ggplot(data = gapminder,
 ```
 
 # References
-
-
-
