@@ -31,7 +31,7 @@ library(ggplot2)
 1. A code-chunk has already been created.
 2. Import the CSV file titled 'country_level_data_0.csv', contained in the 'raw_data' directory with help of the `read_csv()` function
 3. Use the assignment operator (`<-`) to assign the data to an object named `global_waste_data`
-4. Next to the code-chunk option `#| eval:` change the value from `false` to `true` (**Info: This tells are to eval(uate) the code-chunk on render**)
+4. Next to the code-chunk option `#| eval:` change the value from `false` to `true` (**Info: This tells R to eval(uate) the code-chunk on render**)
 5. Run the code contained in the code-chunk and fix any errors
 6. **Render:** Render this file to HTML
 7. **Add:** Open the Git pane and add all files to the staging area (**Tipp: Tick off all checkboxes under column 'Staged'**)
@@ -103,9 +103,9 @@ global_waste_data_kg_year <- global_waste_data_small %>%
 
 ```
 
-**Fill in the blanks**
-
 # Task 4: Data visualisation
+
+**Fill in the blanks**
 
 1. A code-chunk has already been created
 2. Use the `global_waste_data_kg_year` object
@@ -135,9 +135,9 @@ ggplot(data = global_waste_data_kg_year,
 
 # Task 5: Data communication
 
-1. In the YAML header, replace 'html' with 'gfm' (GitHub Flavoured Markdown)
+1. In the YAML header, replace `html` with `gfm` (GitHub Flavoured Markdown)
 2. Render, and close the pop-up window that opens
 3. Add, Commit, Push
-4. Open your GitHub repository for this exercise, and click on the file with the '.md' ending ('ae-10b-lifecycle.md')
+4. Open your GitHub repository for this exercise, and click on the file with the `.md` ending (`ae-10b-lifecycle.md`)
 
 # References
