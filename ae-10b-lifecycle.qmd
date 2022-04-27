@@ -1,6 +1,6 @@
 ---
 title: "Pair Programming - Data Science Lifecycle"
-format: html
+format: gfm
 editor: visual
 bibliography: references.bib
 execute:
@@ -13,14 +13,15 @@ editor_options:
 
 # Task 0: Load R packages
 
-R Packages are typically loaded at the beginning of the document. 
+The required R Packages are loaded at the beginning of the script. 
+
+1. Run the code contained in the code-chunk and fix any errors. (**Tipp: Green play button in the top right corner of the code-chunk.**)
 
 ```{r}
 
 library(readr)
 library(dplyr)
 library(ggplot2)
-
 ```
 
 # Task 1: Data import
@@ -28,15 +29,18 @@ library(ggplot2)
 **Fill in the blanks**
 
 1. A code-chunk has already been created.
-2. Import the CSV file titled 'country_level_data_0.csv', contained in the 'raw_data' directory with help of the `read_csv()` function.
-3. Use the assignment operator (`<-`) to assign the data to an object named `global_waste_data`.
-4. **Render:** Render this file to HTML 
-5. **Add:** Open the Git pane and add all files to the staging area (*Tip: Tick off all checkboxes under column 'Staged'*)
-6. **Commit:** Commit pending changes, add a meaningful commit message 
-7. **Push:** Push changes to the remote repository (i.e. GitHub)
+2. Import the CSV file titled 'country_level_data_0.csv', contained in the 'raw_data' directory with help of the `read_csv()` function
+3. Use the assignment operator (`<-`) to assign the data to an object named `global_waste_data`
+4. Next to the code-chunk option `#| eval:` change the value from `false` to `true` (**Info: This tells are to eval(uate) the code-chunk on render**)
+5. Run the code contained in the code-chunk and fix any errors
+6. **Render:** Render this file to HTML
+7. **Add:** Open the Git pane and add all files to the staging area (**Tipp: Tick off all checkboxes under column 'Staged'**)
+8. **Commit:** Commit pending changes; add a meaningful commit message
+9. **Push:** Push changes to the remote repository (i.e. GitHub)s
 
 ```{r}
 #| eval: true
+
 global_waste_data <- read_csv("data/raw_data/country_level_data_0.csv")
 ```
 
@@ -44,26 +48,28 @@ global_waste_data <- read_csv("data/raw_data/country_level_data_0.csv")
 
 **Fill in the blanks**
 
-1. A code-chunk has already been created.
+1. A code-chunk has already been created
 2. Start with the `global_waste_data` object
-3. Add the pipe operator (`%>%`) and on a new line use the `select()` function.
-4. Inside the parantheses write the names of the following variables:
-- country_name
-- iso3c
-- income_id
-- total_msw_total_msw_generated_tons_year
-- population_population_number_of_people
-5. Add the pipe operator (`%>%`) and on a new line use the `rename()` function.
+3. Add the pipe operator (`%>%`) and on a new line use the `select()` function
+4. Inside the parentheses write the names of the following variables:
+  - country_name
+  - iso3c
+  - income_id
+  - total_msw_total_msw_generated_tons_year
+  - population_population_number_of_people
+5. Add the pipe operator (`%>%`) and on a new line use the `rename()` function
 6. Rename two variables:
-- (1) from 'total_msw_total_msw_generated_tons_year' to 'msw_tons_year'
-- (2) from 'population_population_number_of_people' to 'population'
-7. Use the assignment operator (`<-`) to assign the data to an object named `global_waste_data_small`.
-8. Run the code contained in the code-chunk.
-9. Render
-10. Add, Commit, Push
+  - (1) from 'total_msw_total_msw_generated_tons_year' to 'msw_tons_year'
+  - (2) from 'population_population_number_of_people' to 'population'
+7. Use the assignment operator (`<-`) to assign the data to an object named `global_waste_data_small`
+8. Run the code contained in the code-chunk and fix any errors
+9. Next to the code-chunk option `#| eval:` change the value from `false` to `true`
+10. Render
+11. Add, Commit, Push
 
 ```{r}
 #| eval: true
+
 global_waste_data_small <- global_waste_data %>% 
   select(country_name, 
          iso3c, 
@@ -78,16 +84,18 @@ global_waste_data_small <- global_waste_data %>%
 
 **Fill in the blanks**
 
-1. A code-chunk has already been created.
-2. Start with the `global_waste_data_small` object.
-3. Add the pipe operator (`%>%`) and on a new line use the `mutate()` function.
-4. Create a new variable named 'capita_kg_year' by dividing 'msw_tons_year' by 'population' and multiplied by [?].
-5. Run the code contained in the code-chunk.
-6. Render
-7. Add, Commit, Push
+1. A code-chunk has already been created
+2. Start with the `global_waste_data_small` object
+3. Add the pipe operator (`%>%`) and on a new line use the `mutate()` function
+4. Create a new variable named 'capita_kg_year' by dividing 'msw_tons_year' by 'population' and multiplied by [?]
+5. Run the code contained in the code-chunk and fix any errors
+6. Next to the code-chunk option `#| eval:` change the value from `false` to `true`
+7. Render
+8. Add, Commit, Push
 
 ```{r}
 #| eval: true
+
 global_waste_data_kg_year <- global_waste_data_small %>% 
   mutate(capita_kg_year = msw_tons_year / population * 1000) %>% 
   mutate(income_id = factor(income_id, 
@@ -99,17 +107,19 @@ global_waste_data_kg_year <- global_waste_data_small %>%
 
 # Task 4: Data visualisation
 
-1. A code-chunk has already been created.
+1. A code-chunk has already been created
 2. Use the `global_waste_data_kg_year` object
-3. Use aesthetic mappings to plot the income category on the x-axis and MSW generation per capita on the y-axis.
-4. Run the code contained in the code-chunk.
-5. Use a search engine of your choice to figure out how to remove the legend from the plot (**Tipp:** Add the name of the ggplot2 package to your query and focus on results from StackOverflow).
-6. Run the code contained in the code-chunk.
-7. Render
-8. Add, Commit, Push
+3. Use aesthetic mappings to plot the income category on the x-axis and MSW generation per capita on the y-axis
+4. Run the code contained in the code-chunk and fix any errors
+5. Use a search engine of your choice to figure out how to remove the legend from the plot (**Tipp:** Add the name of the ggplot2 package to your query and focus on results from StackOverflow)
+6. Run the code contained in the code-chunk and fix any errors
+7. Next to the code-chunk option `#| eval:` change the value from `false` to `true`
+8. Render
+9. Add, Commit, Push
 
 ```{r}
 #| eval: true
+
 ggplot(data = global_waste_data_kg_year,
        mapping = aes(x = income_id, 
                      y = capita_kg_year,
@@ -126,7 +136,7 @@ ggplot(data = global_waste_data_kg_year,
 # Task 5: Data communication
 
 1. In the YAML header, replace 'html' with 'gfm' (GitHub Flavoured Markdown)
-2. Render, and close the pop-up window that opens.
+2. Render, and close the pop-up window that opens
 3. Add, Commit, Push
 4. Open your GitHub repository for this exercise, and click on the file with the '.md' ending ('ae-10b-lifecycle.md')
 
