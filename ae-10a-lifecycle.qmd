@@ -77,6 +77,8 @@ ncol(waste_data)
 The data is an [excerpt of the Gapminder data](https://www.gapminder.org/data/documentation/) on life expectancy, GDP per capita, and population by country. Compiled for the purpose of teaching with data until 2007. It is not a definitive source of socioeconomic data and it is not updated [@bryan2017].
 
 ```{r}
+
+# load library, explain error and install in Console
 library(gapminder)
 
 gapminder
@@ -145,37 +147,53 @@ Once your data is tidy, a common first step is to transform it. This includes:
 
 ## Waste characterization data
 
+**Goal:** Calculate the percentages of waste types for sample number 23-A1.
+
 ```{r}
+
+# Step 1: Filter for one sample
 
 waste_data_tidy %>% 
   filter(Sample == "23-A1") 
 
-waste_data_tidy %>% 
-  filter(Sample == "23-A1") %>% 
-  arrange(desc(Mass)) %>% 
-  filter(Mass != 0)
+# Step 2: arrange for Mass, filter out 0s
 
 waste_data_tidy %>% 
   filter(Sample == "23-A1") %>% 
-  arrange(desc(Mass)) %>% 
+  arrange(Mass) %>% 
   filter(Mass != 0)
+
+# Step 3: add percentage column with mutate
 
 waste_data_23_A1 <- waste_data_tidy %>% 
   filter(Sample == "23-A1") %>% 
   arrange(desc(Mass)) %>% 
   filter(Mass != 0) %>% 
-  mutate(Percent = Mass / sum(Mass) * 100) %>% 
-  arrange(desc(Percent)) 
+  mutate(Percent = Mass / sum(Mass) * 100) 
+
+# Step 4: Print to console
+
+waste_data_23_A1
 
 ```
 
 ## Gapminder data
 
+**Goal:** Calculate the median life expectancy at birth by continent for 2007.
+
 ```{r}
+
+# Step 1: 
+# Filter data for the year 2007. 
+# Store as new object: gapminder_yr_2007
 
 gapminder_yr_2007 <- gapminder %>% 
   filter(year == 2007)
-  
+
+# Step 2: 
+# Group data by continent and calculate mean life expectancy
+# Store as new object: gapminder_summary_continent
+
 gapminder_summary_continent <- gapminder_yr_2007 %>% 
   group_by(continent) %>% 
   summarise(lifeExp = median(lifeExp))
@@ -192,38 +210,59 @@ Half of the waste in sample 23-A1 was found to be in the Food/Organic category (
 #| label: tbl-one-sample
 #| tbl-cap: "Mass in kilogram and percentages of waste categories in sample 23-A1"
 
+# Step 1: Use select function to select columns
+
+# Step 2: Explain tables display and knitr package
+
+
 library(knitr)
 
 waste_data_23_A1 %>%
   select(Category, Mass, Percent) %>% 
   kable(digits = 1) 
 
-
 ```
 
 ## Gapminder data
 
+Africa has the lowst life expectancy and greatest spread in life expectancy globally (compare @tbl-median-continent and @fig-boxplot-continent). 
+
 ```{r}
 #| label: tbl-median-continent
 #| tbl-cap: "Median life expectancy by continent in 2007."
+
+# Step 1: Write summary table with kable function
 
 gapminder_summary_continent %>% 
   kable(digits = 1)
 
 ```
 
+**Goal:** Use a boxplot to visualize the median life expectancy by continent in 2007. In the same plot, use a jitter plot to visualise the spread of life expectancy for all countries.
+
 ```{r}
-#| label: fig-median-continent
-#| fig-cap: "Median life expectancy by continent in 2007. Each dot represents one individual coutry."
+#| label: fig-boxplot-continent
+#| fig-cap: "Median life expectancy by continent in 2007. Each dot represents one individual country."
+
+# Step 1: Load ggplot2 package
 
 library(ggplot2)
+
+# Step 2: Write ggplot main function with data and mapping.
+
+# Step 3: Add boxplot and show how to google for removing outliers
+
+# Step 4: Add jitterplot with 0.1 width, 1/4 alpha, 3 size
+
+# Step 5: Add labels
+
+# Step 6: Add a theme minimal with base_size 14
 
 ggplot(data = gapminder_yr_2007, 
        mapping = aes(x = continent, 
                      y = lifeExp)) +
   geom_boxplot(outlier.shape = NA) + # google this
-  geom_jitter(position = position_jitter(width = 0.1, height = 0),
-              alpha = 1/4, size = 3) +
+  geom_jitter(width = 0.1, alpha = 1/4, size = 3) +
   labs(x = NULL,
        y = "life expectancy") +
   theme_minimal(base_size = 14) 
@@ -233,5 +272,7 @@ ggplot(data = gapminder_yr_2007,
 # Data communication
 
 Your rendered html file is a great data communication product. You will learn a bit later in the course how you could make it accessible to others as a website, but you could also just share the HTML file with a collaborator or render the document to the 'pdf' or 'docx' formats. 
+
+**Finale:** Render, Add, Commit, and Push changes back to GitHub.
 
 # References
