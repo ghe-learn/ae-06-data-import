@@ -1,6 +1,6 @@
 ---
 title: "Pair Programming - Data Science Lifecycle"
-format: gfm
+format: html
 editor: visual
 bibliography: references.bib
 execute:
@@ -10,10 +10,6 @@ execute:
 editor_options: 
   chunk_output_type: console
 ---
-
-# Pair Programming
-
-In pair programming exercises learners work in pairs to solve exercises together.
 
 # Task 0: Load R packages
 
@@ -26,7 +22,6 @@ library(dplyr)
 library(ggplot2)
 
 ```
-
 
 # Task 1: Data import
 
@@ -41,6 +36,7 @@ library(ggplot2)
 7. **Push:** Push changes to the remote repository (i.e. GitHub)
 
 ```{r}
+#| eval: true
 global_waste_data <- read_csv("data/raw_data/country_level_data_0.csv")
 ```
 
@@ -67,6 +63,7 @@ global_waste_data <- read_csv("data/raw_data/country_level_data_0.csv")
 10. Add, Commit, Push
 
 ```{r}
+#| eval: true
 global_waste_data_small <- global_waste_data %>% 
   select(country_name, 
          iso3c, 
@@ -90,7 +87,7 @@ global_waste_data_small <- global_waste_data %>%
 7. Add, Commit, Push
 
 ```{r}
-
+#| eval: true
 global_waste_data_kg_year <- global_waste_data_small %>% 
   mutate(capita_kg_year = msw_tons_year / population * 1000) %>% 
   mutate(income_id = factor(income_id, 
@@ -112,6 +109,7 @@ global_waste_data_kg_year <- global_waste_data_small %>%
 8. Add, Commit, Push
 
 ```{r}
+#| eval: true
 ggplot(data = global_waste_data_kg_year,
        mapping = aes(x = income_id, 
                      y = capita_kg_year,
@@ -130,6 +128,6 @@ ggplot(data = global_waste_data_kg_year,
 1. In the YAML header, replace 'html' with 'gfm' (GitHub Flavoured Markdown)
 2. Render, and close the pop-up window that opens.
 3. Add, Commit, Push
-4. Open your GitHub repository for this exercise, and click on the file with the '.md' ending ('02-pp-data-science-lifecycle-solutions.md')
+4. Open your GitHub repository for this exercise, and click on the file with the '.md' ending ('ae-10b-lifecycle.md')
 
 # References
