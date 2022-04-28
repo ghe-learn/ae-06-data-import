@@ -75,7 +75,7 @@ Half of the waste in sample 23-A1 was found to be in the Food/Organic category (
 
 ## Gapminder data
 
-Africa has the lowst life expectancy and greatest spread in life expectancy globally (compare @tbl-median-continent and @fig-boxplot-continent). 
+Africa has the lowst life expectancy and greatest spread in life expectancy globally (compare @tbl-median-continent and @fig-boxplot-continent).
 
 ```{r}
 #| label: tbl-median-continent
@@ -95,7 +95,7 @@ Africa has the lowst life expectancy and greatest spread in life expectancy glob
 
 # Data communication
 
-Your rendered html file is a great data communication product. You will learn a bit later in the course how you could make it accessible to others as a website, but you could also just share the HTML file with a collaborator or render the document to the 'pdf' or 'docx' formats. 
+Your rendered html file is a great data communication product. You will learn a bit later in the course how you could make it accessible to others as a website, but you could also just share the HTML file with a collaborator or render the document to the 'pdf' or 'docx' formats.
 
 **Finale:** Render, Add, Commit, and Push changes back to GitHub.
 
